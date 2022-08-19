@@ -9,7 +9,7 @@
     "build": "tsc",
     "prestart": "npm run build",
     "start": "node build/index.js",
-    "dev": "concurrently \"tsc --watch\" \"nodemon --watch build build/index.js\""
+    "dev": "concurrently \"tsc --watch\" \"nodemon -r dotenv/config --watch build build/index.js\""
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "@koa/router": "^12.0.0",
     "@types/koa__router": "^8.0.11",
     "@types/koa-morgan": "^1.0.5",
+    "dotenv": "^16.0.1",
     "joi": "^17.6.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",

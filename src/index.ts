@@ -17,4 +17,4 @@ app.use(favicon(`${__dirname}/public/favicon.ico`));
 app.use(router.routes());
 app.use(serve('web/build'));
 
-app.listen(3000);
+app.listen(process.env.PORT);
