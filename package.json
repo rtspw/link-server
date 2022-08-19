@@ -29,6 +29,8 @@
   "devDependencies": {
     "@types/koa": "^2.13.5",
     "@types/koa-bodyparser": "^4.3.7",
+    "@types/koa-favicon": "^2.0.21",
+    "@types/koa-static": "^4.0.2",
     "@types/node": "^18.7.6",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "concurrently": "^7.3.0",

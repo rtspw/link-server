@@ -1,18 +1,22 @@
 export interface KeywordLink {
-  url: string;
-  keyword: string;
-  description?: string;
+  url: string
+  keyword: string
+  description?: string
 }
 
-const database = new Map<string, KeywordLink>();
+const database = new Map<string, KeywordLink>()
 
 export class NotFoundError extends Error {};
 
-export const getKeywordLink = (keyword: string) => {
-  if (database.has(keyword)) return database.get(keyword)
-  throw new NotFoundError(`Entry with keyword "${keyword}" was not found`);
-};
+export const getKeywordLink = (keyword: string): KeywordLink => {
+  const keywordLink = database.get(keyword)
+  if (keywordLink !== undefined) {
+    return keywordLink
+  } else {
+    throw new NotFoundError(`Entry with keyword "${keyword}" was not found`)
+  }
+}
 
-export const setKeywordLink = (keyword: string, keywordLink: KeywordLink) => {
-  database.set(keyword, keywordLink);
+export const setKeywordLink = (keyword: string, keywordLink: KeywordLink): void => {
+  database.set(keyword, keywordLink)
 }
