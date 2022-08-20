@@ -3,7 +3,7 @@ import bodyParser from 'koa-bodyparser'
 
 import Joi from 'joi'
 
-import * as DB from '../persistence'
+import * as DB from '../persistence/api'
 
 const querySchema = Joi.object({
   keyword: Joi.string().required()
@@ -26,7 +26,7 @@ apiRouter.get('/link', async (ctx, next) => {
     if (error instanceof Joi.ValidationError) {
       ctx.status = 422
       ctx.body = `Validation error: ${error.message}`
-    } else if (error instanceof DB.NotFoundError) {
+    } else if (error instanceof DB.Errors.NotFoundError) {
       ctx.status = 404
       ctx.body = error.message
     } else {
@@ -38,7 +38,7 @@ apiRouter.get('/link', async (ctx, next) => {
 apiRouter.post('/link', bodyParser(), async (ctx, next) => {
   try {
     const body: DB.KeywordLink = await postSchema.validateAsync(ctx.request.body)
-    await DB.setKeywordLink(body.keyword, body)
+    await DB.setKeywordLink(body.keyword, body.url, body.description)
     ctx.body = {
       status: 'success',
       summary: `Set keyword "${body.keyword}" to url "${body.url}"`
