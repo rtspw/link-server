@@ -10,6 +10,7 @@ import responseTimeHeader from './middleware/response-time-header'
 import router from './routers/main-router'
 
 const app = new Koa()
+const port = process.env.port ?? 3000
 
 app.use(responseTimeHeader({ logTime: true }))
 app.use(helmet())
@@ -20,4 +21,6 @@ app.use(router.routes())
 app.use(serve('web/build'))
 app.use(ctx => ctx.redirect('/'))
 
-app.listen(process.env.PORT)
+console.log(`Starting up the server on port ${port}`)
+
+app.listen(port)

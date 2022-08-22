@@ -12,6 +12,7 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json'
   },
+  ignorePatterns: ['**/build/**/*.js'],
   rules: {
   }
 }
